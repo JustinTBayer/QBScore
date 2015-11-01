@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Project SYSTEM "Project-4.6.dtd">
+<!-- eric4 project file for project QuizbowlScore -->
+<!-- Saved: 2015-11-01, 12:45:28 -->
+<!-- Copyright (C) 2015 ,  -->
+<Project version="4.6">
+  <Language>en</Language>
+  <ProgLanguage mixed="0">Python</ProgLanguage>
+  <ProjectType>Qt4</ProjectType>
+  <Description></Description>
+  <Version>0.1</Version>
+  <Author></Author>
+  <Email></Email>
+  <Sources>
+    <Source>ui/Ui_mainwindow.py</Source>
+    <Source>ui/Ui_teamwidget.py</Source>
+    <Source>config.py</Source>
+    <Source>ui/teamwidget.py</Source>
+    <Source>mainwindow.py</Source>
+    <Source>modules/questionParser.py</Source>
+    <Source>qbscore.py</Source>
+    <Source>ui/Ui_playerwidget.py</Source>
+    <Source>ui/playerwidget.py</Source>
+    <Source>teams/team1.txt</Source>
+    <Source>teams/team2.txt</Source>
+    <Source>modules/teamobject.py</Source>
+    <Source>ui/Ui_moderatorwindow.py</Source>
+    <Source>moderatorwindow.py</Source>
+    <Source>modules/databaseaccess.py</Source>
+    <Source>ui/Ui_newgame.py</Source>
+    <Source>newgame.py</Source>
+  </Sources>
+  <Forms>
+    <Form>ui/mainwindow.ui</Form>
+    <Form>ui/teamwidget.ui</Form>
+    <Form>ui/playerwidget.ui</Form>
+    <Form>ui/moderatorwindow.ui</Form>
+    <Form>ui/newgame.ui</Form>
+  </Forms>
+  <Translations>
+  </Translations>
+  <Resources>
+  </Resources>
+  <Interfaces>
+  </Interfaces>
+  <Others>
+    <Other>teams/team1.txt</Other>
+    <Other>teams/team2.txt</Other>
+  </Others>
+  <MainScript>qbscore.py</MainScript>
+  <Vcs>
+    <VcsType>None</VcsType>
+  </Vcs>
+  <FiletypeAssociations>
+    <FiletypeAssociation pattern="*.ui" type="FORMS" />
+    <FiletypeAssociation pattern="*.idl" type="INTERFACES" />
+    <FiletypeAssociation pattern="*.qm" type="TRANSLATIONS" />
+    <FiletypeAssociation pattern="*.ptl" type="SOURCES" />
+    <FiletypeAssociation pattern="*.pyw" type="SOURCES" />
+    <FiletypeAssociation pattern="*.ui.h" type="FORMS" />
+    <FiletypeAssociation pattern="*.ts" type="TRANSLATIONS" />
+    <FiletypeAssociation pattern="*.py" type="SOURCES" />
+    <FiletypeAssociation pattern="*.qrc" type="RESOURCES" />
+  </FiletypeAssociations>
+</Project>

@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>TeamWidget</class>
+ <widget class="QWidget" name="TeamWidget">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>295</width>
+    <height>319</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <layout class="QVBoxLayout" name="MainLayout">
+   <item>
+    <layout class="QVBoxLayout" name="teamLayout">
+     <item>
+      <widget class="QLabel" name="teamName">
+       <property name="font">
+        <font>
+         <pointsize>20</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="scaledContents">
+        <bool>true</bool>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+       <property name="wordWrap">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLabel" name="teamScore">
+       <property name="font">
+        <font>
+         <pointsize>48</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string/>
+       </property>
+       <property name="alignment">
+        <set>Qt::AlignCenter</set>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
