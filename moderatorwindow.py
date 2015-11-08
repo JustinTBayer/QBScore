@@ -35,16 +35,16 @@ class ModeratorWindow(QMainWindow, Ui_MainWindow):
     
     def powerClicked(self):
         self.gameWindow.changeScoreTossup(config.powerPoints)
-        
+
     def correctClicked(self):
         self.gameWindow.changeScoreTossup(config.correctPoints)
-        
+
     def wrongClicked(self):
         self.gameWindow.changeScoreTossupNeg(config.negPoints)
-        
+
     def clearClicked(self):
         self.gameWindow.clearBuzzers()
-        
+
     @pyqtSignature("")
     def on_actionNew_Game_triggered(self):
         from newgame import NewGameDialog
@@ -56,8 +56,8 @@ class ModeratorWindow(QMainWindow, Ui_MainWindow):
         self.newgame.show()
         self.connect(self.newgame.accept, SIGNAL("clicked()"), self.acceptedClicked)
         self.connect(self.newgame.reject, SIGNAL("clicked()"), self.rejectedClicked)
-        
-     
+
+
     def acceptedClicked(self):
         self.team1 = self.newgame.team1.currentText()
         self.team2 = self.newgame.team2.currentText()
@@ -74,16 +74,12 @@ class ModeratorWindow(QMainWindow, Ui_MainWindow):
         for player in team2List:
             team2nameList.append(databaseaccess.get_Player_Name_By_Id(player))
         
-        
-        
-        
-        
-        
         self.gameWindow = MainWindow()
+        self.gameWindow.setupGame(self.team1,  self.team2)
         self.gameWindow.show()
         self.newgame.close()
-        
-        
+
+    
     def rejectedClicked(self):
         self.newgame.close()
    

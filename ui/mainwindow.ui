@@ -153,7 +153,7 @@
          <layout class="QVBoxLayout" name="team1Layout"/>
         </item>
         <item>
-         <widget class="QLCDNumber" name="lcdNumber"/>
+         <widget class="QLCDNumber" name="lcdTimer"/>
         </item>
         <item>
          <layout class="QVBoxLayout" name="team2Layout"/>

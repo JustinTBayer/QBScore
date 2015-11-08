@@ -12,7 +12,7 @@ blankPlayerPicture = 'pictures/blank.png'
 teamList = ['teams/team1.txt', 'teams/team2.txt']
 buzzerList = [['q', 'w', 'e', 'r'], ['t', 'y', 'u', 'i']]
 activePlayerList = [['0', '1', '2', '3'], ['0', '1', '2', '3']]
-bonusMode = True
+bonusMode = False
 
 #buttons
 powerButton = '3'
