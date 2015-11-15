@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'C:\Justin\code\qbscore\qbscore 2 bonus mode\ui\moderatorwindow.ui'
+# Form implementation generated from reading ui file 'C:\Justin\code\qbscore\qbscore 2 bonus mode\QBScore\ui\moderatorwindow.ui'
 #
-# Created: Sat Oct 31 17:41:13 2015
+# Created: Sun Nov 15 03:35:28 2015
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -25,20 +25,17 @@ class Ui_MainWindow(object):
         self.verticalLayout = QtGui.QVBoxLayout()
         self.verticalLayout.setObjectName(_fromUtf8("verticalLayout"))
         self.Question = QtGui.QTextBrowser(self.widget)
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        self.Question.setFont(font)
         self.Question.setObjectName(_fromUtf8("Question"))
         self.verticalLayout.addWidget(self.Question)
         self.horizontalLayout_2 = QtGui.QHBoxLayout()
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
-        self.verticalLayout_2 = QtGui.QVBoxLayout()
-        self.verticalLayout_2.setObjectName(_fromUtf8("verticalLayout_2"))
-        self.Team = QtGui.QLabel(self.widget)
-        self.Team.setObjectName(_fromUtf8("Team"))
-        self.verticalLayout_2.addWidget(self.Team)
-        self.Name = QtGui.QLabel(self.widget)
-        self.Name.setObjectName(_fromUtf8("Name"))
-        self.verticalLayout_2.addWidget(self.Name)
-        self.horizontalLayout_2.addLayout(self.verticalLayout_2)
         self.Answer = QtGui.QTextEdit(self.widget)
+        font = QtGui.QFont()
+        font.setPointSize(14)
+        self.Answer.setFont(font)
         self.Answer.setObjectName(_fromUtf8("Answer"))
         self.horizontalLayout_2.addWidget(self.Answer)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
@@ -61,12 +58,12 @@ class Ui_MainWindow(object):
         self.horizontalLayout.addLayout(self.verticalLayout_3)
         self.verticalLayout_6 = QtGui.QVBoxLayout()
         self.verticalLayout_6.setObjectName(_fromUtf8("verticalLayout_6"))
-        self.Correct_Answer = QtGui.QPushButton(self.widget)
-        self.Correct_Answer.setObjectName(_fromUtf8("Correct_Answer"))
-        self.verticalLayout_6.addWidget(self.Correct_Answer)
-        self.pushButton = QtGui.QPushButton(self.widget)
-        self.pushButton.setObjectName(_fromUtf8("pushButton"))
-        self.verticalLayout_6.addWidget(self.pushButton)
+        self.Change = QtGui.QPushButton(self.widget)
+        self.Change.setObjectName(_fromUtf8("Change"))
+        self.verticalLayout_6.addWidget(self.Change)
+        self.Timer = QtGui.QPushButton(self.widget)
+        self.Timer.setObjectName(_fromUtf8("Timer"))
+        self.verticalLayout_6.addWidget(self.Timer)
         self.horizontalLayout.addLayout(self.verticalLayout_6)
         self.verticalLayout_4 = QtGui.QVBoxLayout()
         self.verticalLayout_4.setObjectName(_fromUtf8("verticalLayout_4"))
@@ -78,6 +75,7 @@ class Ui_MainWindow(object):
         self.verticalLayout_4.addWidget(self.Next)
         self.horizontalLayout.addLayout(self.verticalLayout_4)
         self.verticalLayout.addLayout(self.horizontalLayout)
+        self.verticalLayout.setStretch(0, 1)
         self.gridLayout.addLayout(self.verticalLayout, 0, 0, 1, 1)
         MainWindow.setCentralWidget(self.widget)
         self.menubar = QtGui.QMenuBar(MainWindow)
@@ -96,16 +94,14 @@ class Ui_MainWindow(object):
 
     def retranslateUi(self, MainWindow):
         MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "MainWindow", None, QtGui.QApplication.UnicodeUTF8))
-        self.Team.setText(QtGui.QApplication.translate("MainWindow", "Team", None, QtGui.QApplication.UnicodeUTF8))
-        self.Name.setText(QtGui.QApplication.translate("MainWindow", "Player", None, QtGui.QApplication.UnicodeUTF8))
         self.Power.setText(QtGui.QApplication.translate("MainWindow", "Power (3)", None, QtGui.QApplication.UnicodeUTF8))
         self.Correct.setText(QtGui.QApplication.translate("MainWindow", "Correct (2)", None, QtGui.QApplication.UnicodeUTF8))
         self.Negative.setText(QtGui.QApplication.translate("MainWindow", "Wrong (1)", None, QtGui.QApplication.UnicodeUTF8))
         self.Clear.setText(QtGui.QApplication.translate("MainWindow", "Clear (0)", None, QtGui.QApplication.UnicodeUTF8))
-        self.Correct_Answer.setText(QtGui.QApplication.translate("MainWindow", "Change Answer (4)", None, QtGui.QApplication.UnicodeUTF8))
-        self.pushButton.setText(QtGui.QApplication.translate("MainWindow", "Timer (5)", None, QtGui.QApplication.UnicodeUTF8))
-        self.Previous.setText(QtGui.QApplication.translate("MainWindow", "Previous (6)", None, QtGui.QApplication.UnicodeUTF8))
-        self.Next.setText(QtGui.QApplication.translate("MainWindow", "Next (7)", None, QtGui.QApplication.UnicodeUTF8))
+        self.Change.setText(QtGui.QApplication.translate("MainWindow", "Change Answer (4)", None, QtGui.QApplication.UnicodeUTF8))
+        self.Timer.setText(QtGui.QApplication.translate("MainWindow", "Timer (8)", None, QtGui.QApplication.UnicodeUTF8))
+        self.Previous.setText(QtGui.QApplication.translate("MainWindow", "Previous (7)", None, QtGui.QApplication.UnicodeUTF8))
+        self.Next.setText(QtGui.QApplication.translate("MainWindow", "Next (9)", None, QtGui.QApplication.UnicodeUTF8))
         self.menuFile.setTitle(QtGui.QApplication.translate("MainWindow", "File", None, QtGui.QApplication.UnicodeUTF8))
         self.actionNew_Game.setText(QtGui.QApplication.translate("MainWindow", "New Game", None, QtGui.QApplication.UnicodeUTF8))
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE Project SYSTEM "Project-4.6.dtd">
 <!-- eric4 project file for project QuizbowlScore -->
-<!-- Saved: 2015-11-08, 16:23:39 -->
+<!-- Saved: 2015-11-15, 02:00:01 -->
 <!-- Copyright (C) 2015 ,  -->
 <Project version="4.6">
   <Language>en</Language>
@@ -47,6 +47,7 @@
   <Others>
     <Other>teams/team1.txt</Other>
     <Other>teams/team2.txt</Other>
+    <Other>sounds/beep license.txl.tcl</Other>
   </Others>
   <MainScript>qbscore.py</MainScript>
   <Vcs>

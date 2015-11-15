@@ -16,32 +16,26 @@
   <widget class="QWidget" name="widget">
    <layout class="QGridLayout" name="gridLayout">
     <item row="0" column="0">
-     <layout class="QVBoxLayout" name="verticalLayout">
+     <layout class="QVBoxLayout" name="verticalLayout" stretch="1,0,0">
       <item>
-       <widget class="QTextBrowser" name="Question"/>
+       <widget class="QTextBrowser" name="Question">
+        <property name="font">
+         <font>
+          <pointsize>14</pointsize>
+         </font>
+        </property>
+       </widget>
       </item>
       <item>
        <layout class="QHBoxLayout" name="horizontalLayout_2">
         <item>
-         <layout class="QVBoxLayout" name="verticalLayout_2">
-          <item>
-           <widget class="QLabel" name="Team">
-            <property name="text">
-             <string>Team</string>
-            </property>
-           </widget>
-          </item>
-          <item>
-           <widget class="QLabel" name="Name">
-            <property name="text">
-             <string>Player</string>
-            </property>
-           </widget>
-          </item>
-         </layout>
-        </item>
-        <item>
-         <widget class="QTextEdit" name="Answer"/>
+         <widget class="QTextEdit" name="Answer">
+          <property name="font">
+           <font>
+            <pointsize>14</pointsize>
+           </font>
+          </property>
+         </widget>
         </item>
        </layout>
       </item>
@@ -82,16 +76,16 @@
         <item>
          <layout class="QVBoxLayout" name="verticalLayout_6">
           <item>
-           <widget class="QPushButton" name="Correct_Answer">
+           <widget class="QPushButton" name="Change">
             <property name="text">
              <string>Change Answer (4)</string>
             </property>
            </widget>
           </item>
           <item>
-           <widget class="QPushButton" name="pushButton">
+           <widget class="QPushButton" name="Timer">
             <property name="text">
-             <string>Timer (5)</string>
+             <string>Timer (8)</string>
             </property>
            </widget>
           </item>
@@ -102,14 +96,14 @@
           <item>
            <widget class="QPushButton" name="Previous">
             <property name="text">
-             <string>Previous (6)</string>
+             <string>Previous (7)</string>
             </property>
            </widget>
           </item>
           <item>
            <widget class="QPushButton" name="Next">
             <property name="text">
-             <string>Next (7)</string>
+             <string>Next (9)</string>
             </property>
            </widget>
           </item>

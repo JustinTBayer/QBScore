@@ -153,7 +153,11 @@
          <layout class="QVBoxLayout" name="team1Layout"/>
         </item>
         <item>
-         <widget class="QLCDNumber" name="lcdTimer"/>
+         <widget class="QLCDNumber" name="lcdTimer">
+          <property name="intValue" stdset="0">
+           <number>5</number>
+          </property>
+         </widget>
         </item>
         <item>
          <layout class="QVBoxLayout" name="team2Layout"/>

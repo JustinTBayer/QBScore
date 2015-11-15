@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'C:\Justin\code\qbscore\qbscore 2 bonus mode\QBScore\ui\mainwindow.ui'
 #
-# Created: Sat Nov 07 15:20:30 2015
+# Created: Sat Nov 14 17:45:34 2015
 #      by: PyQt4 UI code generator 4.9.1
 #
 # WARNING! All changes made in this file will be lost!
@@ -71,6 +71,7 @@ class Ui_MainWindow(object):
         self.team1Layout.setObjectName(_fromUtf8("team1Layout"))
         self.teamsLayout.addLayout(self.team1Layout)
         self.lcdTimer = QtGui.QLCDNumber(self.centralWidget)
+        self.lcdTimer.setProperty("intValue", 5)
         self.lcdTimer.setObjectName(_fromUtf8("lcdTimer"))
         self.teamsLayout.addWidget(self.lcdTimer)
         self.team2Layout = QtGui.QVBoxLayout()

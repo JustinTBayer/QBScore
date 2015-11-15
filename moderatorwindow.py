@@ -16,6 +16,10 @@ class ModeratorWindow(QMainWindow, Ui_MainWindow):
         self.connect(self.Power, SIGNAL("clicked()"), self.powerClicked)
         self.connect(self.Negative, SIGNAL("clicked()"), self.wrongClicked)
         self.connect(self.Clear, SIGNAL("clicked()"), self.clearClicked)
+        self.connect(self.Timer,  SIGNAL("clicked()"), self.timerClicked)
+        self.connect(self.Previous, SIGNAL("clicked()"), self.previousClicked)
+        self.connect(self.Next,  SIGNAL("clicked()"),  self.nextClicked)
+        
         
     def keyPressEvent(self, event):
         if type(event) == QKeyEvent:
@@ -34,37 +38,53 @@ class ModeratorWindow(QMainWindow, Ui_MainWindow):
 
     
     def powerClicked(self):
-        self.gameWindow.changeScoreTossup(config.powerPoints)
+        self.gameWindow.functionHandler(config.powerButton)
 
     def correctClicked(self):
-        self.gameWindow.changeScoreTossup(config.correctPoints)
+        self.gameWindow.functionHandler(config.correctButton)
 
     def wrongClicked(self):
-        self.gameWindow.changeScoreTossupNeg(config.negPoints)
+        self.gameWindow.functionHandler(config.negButton)
 
     def clearClicked(self):
-        self.gameWindow.clearBuzzers()
+        self.gameWindow.functionHandler(config.clearButton)
+    
+    def timerClicked(self):
+        self.gameWindow.functionHandler(config.startTimer)
+
+    def previousClicked(self):
+        self.gameWindow.functionHandler(config.previousQuestion)
+    
+    def nextClicked(self):
+        self.gameWindow.functionHandler(config.nextQuestion)
 
     @pyqtSignature("")
     def on_actionNew_Game_triggered(self):
         from newgame import NewGameDialog
         self.newgame=NewGameDialog()
         from modules import databaseaccess
-        teamsList = databaseaccess.get_Teams()
-        self.newgame.team1.addItems(teamsList)
-        self.newgame.team2.addItems(teamsList)
+        teamsDict = databaseaccess.get_Teams()
+        for team_id in teamsDict:
+            self.newgame.team1.addItem(teamsDict[team_id], team_id)
+            self.newgame.team2.addItem(teamsDict[team_id], team_id)
         self.newgame.show()
         self.connect(self.newgame.accept, SIGNAL("clicked()"), self.acceptedClicked)
         self.connect(self.newgame.reject, SIGNAL("clicked()"), self.rejectedClicked)
 
 
     def acceptedClicked(self):
-        self.team1 = self.newgame.team1.currentText()
-        self.team2 = self.newgame.team2.currentText()
+        self.gameWindow = MainWindow()
+        self.gameWindow.team1 = self.newgame.team1.currentText()
+        self.gameWindow.team2 = self.newgame.team2.currentText()
+        team1index = self.newgame.team1.currentIndex()
+        team2index = self.newgame.team2.currentIndex()
+        self.gameWindow.team1id = self.newgame.team1.itemData(team1index)
+        self.gameWindow.team1id = str(self.gameWindow.team1id)
+        self.gameWindow.team2id = self.newgame.team2.itemData(team2index)
+        self.gameWindow.team2id = str(self.gameWindow.team2id)
         from modules import databaseaccess
-        
-        team1List = databaseaccess.get_Players_By_Team(self.team1)
-        team2List = databaseaccess.get_Players_By_Team(self.team2)
+        team1List = databaseaccess.get_Player_Name_By_Team_Id(self.gameWindow.team1id)
+        team2List = databaseaccess.get_Player_Name_By_Team_Id(self.gameWindow.team2id)
         team1nameList = []
         team2nameList = []
         
@@ -74,12 +94,25 @@ class ModeratorWindow(QMainWindow, Ui_MainWindow):
         for player in team2List:
             team2nameList.append(databaseaccess.get_Player_Name_By_Id(player))
         
-        self.gameWindow = MainWindow()
-        self.gameWindow.setupGame(self.team1,  self.team2)
+        self.connect(self.gameWindow, SIGNAL('previousQuestion'),  self.previousQuestion)
+        self.connect(self.gameWindow, SIGNAL('nextQuestion'),  self.nextQuestion)
+        self.gameWindow.setupGame(self.gameWindow.team1, self.gameWindow.team2)
         self.gameWindow.show()
         self.newgame.close()
-
     
     def rejectedClicked(self):
         self.newgame.close()
    
+    def previousQuestion(self):
+        from modules import databaseaccess
+        self.gameWindow.questionNumber = self.gameWindow.questionNumber - 1
+        questionList = databaseaccess.get_Question_By_Id(self.gameWindow.questionNumber)
+        self.Question.setText(questionList[0])
+        self.Answer.setText(questionList[1])
+
+    def nextQuestion(self):
+        from modules import databaseaccess
+        self.gameWindow.questionNumber = self.gameWindow.questionNumber + 1
+        questionList = databaseaccess.get_Question_By_Id(self.gameWindow.questionNumber)
+        self.Question.setText(questionList[0])
+        self.Answer.setText(questionList[1])
