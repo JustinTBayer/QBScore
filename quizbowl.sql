@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 08, 2015 at 11:20 PM
+-- Generation Time: Nov 16, 2015 at 07:17 AM
 -- Server version: 5.6.17
 -- PHP Version: 5.5.12
 
@@ -34,15 +34,18 @@ CREATE TABLE IF NOT EXISTS `game` (
   `teamOneScore` int(10) NOT NULL,
   `teamTwoId` int(11) NOT NULL,
   `teamTwoScore` int(10) NOT NULL,
-  PRIMARY KEY (`gameId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ;
+  `active` int(1) NOT NULL,
+  PRIMARY KEY (`gameId`),
+  KEY `gameId` (`gameId`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `game`
 --
 
-INSERT INTO `game` (`gameId`, `tournamentId`, `roundNumber`, `teamOneId`, `teamOneScore`, `teamTwoId`, `teamTwoScore`) VALUES
-(1, 2, 1, 0, 50, 1, 50);
+INSERT INTO `game` (`gameId`, `tournamentId`, `roundNumber`, `teamOneId`, `teamOneScore`, `teamTwoId`, `teamTwoScore`, `active`) VALUES
+(1, 2, 1, 1, 45, 0, 20, 1),
+(2, 2, 1, 1, 35, 0, 60, 1);
 
 -- --------------------------------------------------------
 
@@ -51,12 +54,65 @@ INSERT INTO `game` (`gameId`, `tournamentId`, `roundNumber`, `teamOneId`, `teamO
 --
 
 CREATE TABLE IF NOT EXISTS `gamedetails` (
+  `entry_id` int(11) NOT NULL AUTO_INCREMENT,
   `gameId` int(11) NOT NULL,
-  `questionId` int(11) NOT NULL,
+  `tossup` int(11) NOT NULL,
   `playerId` int(11) NOT NULL,
-  `correct` int(11) NOT NULL,
-  `buzzTurn` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `points` int(2) NOT NULL,
+  PRIMARY KEY (`entry_id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=47 ;
+
+--
+-- Dumping data for table `gamedetails`
+--
+
+INSERT INTO `gamedetails` (`entry_id`, `gameId`, `tossup`, `playerId`, `points`) VALUES
+(1, 11, 1, 6, -5),
+(2, 11, 1, 6, 10),
+(3, 11, 1, 6, 15),
+(4, 11, 1, 3, -5),
+(5, 11, 1, 3, 10),
+(6, 11, 1, 3, 15),
+(7, 12, 1, 6, 10),
+(8, 12, 1, 7, 15),
+(9, 12, 1, 4, 10),
+(10, 13, 1, 6, 10),
+(11, 13, 1, 6, 15),
+(12, 13, 1, 6, 15),
+(13, 13, 1, 3, 10),
+(14, 14, 1, 6, 10),
+(15, 14, 1, 6, 15),
+(16, 14, 1, 6, 15),
+(17, 14, 1, 3, 10),
+(18, 14, 1, 3, 15),
+(19, 14, 1, 3, -5),
+(20, 14, 1, 3, 15),
+(21, 1, 1, 5, -5),
+(22, 1, 1, 6, 10),
+(23, 1, 1, 6, 10),
+(24, 1, 1, 7, 15),
+(25, 1, 1, 8, 15),
+(26, 1, 1, 2, -5),
+(27, 1, 1, 2, 10),
+(28, 1, 1, 2, 15),
+(29, 1, 1, 5, -5),
+(30, 1, 1, 5, 10),
+(31, 1, 1, 6, 10),
+(32, 1, 1, 7, 15),
+(33, 1, 1, 8, 15),
+(34, 1, 1, 2, -5),
+(35, 1, 1, 2, 10),
+(36, 1, 1, 3, 15),
+(37, 2, 1, 6, -5),
+(38, 2, 1, 6, 10),
+(39, 2, 1, 7, 15),
+(40, 2, 1, 8, 15),
+(41, 2, 1, 2, -5),
+(42, 2, 1, 2, 10),
+(43, 2, 1, 2, 15),
+(44, 2, 1, 3, 15),
+(45, 2, 1, 4, 15),
+(46, 2, 1, 1, 10);
 
 -- --------------------------------------------------------
 
@@ -94,15 +150,15 @@ INSERT INTO `player` (`playerId`, `teamId`, `name`) VALUES
 CREATE TABLE IF NOT EXISTS `questionsandanswers` (
   `Question` text NOT NULL,
   `Answer` text NOT NULL,
-  `quesionId` int(11) NOT NULL AUTO_INCREMENT,
-  PRIMARY KEY (`quesionId`)
+  `questionId` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`questionId`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=26 ;
 
 --
 -- Dumping data for table `questionsandanswers`
 --
 
-INSERT INTO `questionsandanswers` (`Question`, `Answer`, `quesionId`) VALUES
+INSERT INTO `questionsandanswers` (`Question`, `Answer`, `questionId`) VALUES
 ('How much wood could a woodchuck chuck if a woodchuck could chuck wood?', 'Woodchucks don''t chuck wood and won''t chuck wood.', 1),
 ('What language is this coded in?', 'Python', 2),
 ('How many hours are in a day?', '24', 3),

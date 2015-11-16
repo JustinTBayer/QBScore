@@ -27,7 +27,6 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                                 playerPicture = team.playerPictureList[playerIndex]
                                 playerName = team.playerNameList[playerIndex]
                                 self.currentBuzzedPlayerId = team.playerIdList[buzzerIndex]
-                                print self.currentBuzzedPlayerId
                                 teamWidget = team.teamWidget
                                 self.buzzed(playerPicture, playerName, teamWidget)
             else:
@@ -59,22 +58,26 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                 self.blankPlayerWidget()
 
     def changeScoreTossup(self, scoreChange):
-        from modules import databaseaccess
-        databaseaccess.submit_Score(self, scoreChange)
         for team in self.teamObjectList:
             if team.teamWidget.isHighlighted() and not team.teamWidget.isBonus():
-                team.teamWidget.setScore(team.teamWidget.getScore() + scoreChange)
+                teamNumber = self.teamObjectList.index(team) + 1
+                score = team.teamWidget.getScore() + scoreChange
+                team.teamWidget.setScore(score)
+                from modules import databaseaccess
+                databaseaccess.submit_Score(self.gameId, self.questionNumber, self.currentBuzzedPlayerId, scoreChange, teamNumber)
                 if config.bonusMode:
                     team.teamWidget.bonusOn()
                 else:
                     self.clearBuzzers()
 
     def changeScoreTossupNeg(self, scoreChange):
-        from modules import databaseaccess
-        databaseaccess.submit_Score(self, scoreChange)
         for team in self.teamObjectList:
             if team.teamWidget.isHighlighted() and not team.teamWidget.isBonus():
-                team.teamWidget.setScore(team.teamWidget.getScore() + scoreChange)
+                teamNumber = self.teamObjectList.index(team) + 1
+                score = team.teamWidget.getScore() + scoreChange
+                team.teamWidget.setScore(score)
+                from modules import databaseaccess
+                databaseaccess.submit_Score(self.gameId, self.questionNumber, self.currentBuzzedPlayerId, scoreChange, teamNumber)
                 self.clearBuzzers()
 
     def clearBuzzers(self):
@@ -115,7 +118,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         team_Pic1 = databaseaccess.get_Team_Pic(team1)
         playerPictureList1 = [team_Pic1,  team_Pic1,  team_Pic1,  team_Pic1]
         playerNameList1 = databaseaccess.get_Player_Name_By_Team_Id(self.team1)
-        playerIdList1 = databaseaccess.get_Player_Id_By_Team_Id(self.team1)
+        playerIdList1 = databaseaccess.get_Player_Id_By_Team_Id(self.team1id)
         ##playerNameList1 = ['qq',  'ww',  'ee',  'rr']
         buzzerList1 = ['q', 'w', 'e', 'r']
         activePlayerList1 = [0,  1,  2,  3]
@@ -123,11 +126,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         teamObject1 = TeamObject(team1, playerPictureList1, playerNameList1, playerIdList1, buzzerList1, activePlayerList1, teamWidget1)
         self.team1Layout.addWidget(teamWidget1)
         self.teamObjectList.append(teamObject1)
-        
         team_Pic2 = databaseaccess.get_Team_Pic(team2)
         playerPictureList2 = [team_Pic2,  team_Pic2,  team_Pic2,  team_Pic2]
         playerNameList2 = databaseaccess.get_Player_Name_By_Team_Id(self.team2)
-        playerIdList2 = databaseaccess.get_Player_Id_By_Team_Id(self.team2)
+        playerIdList2 = databaseaccess.get_Player_Id_By_Team_Id(self.team2id)
         buzzerList2 = ['t', 'y', 'u', 'i']
         activePlayerList2 = [0,  1,  2,  3]
         teamWidget2 = TeamWidget(team2)
@@ -179,7 +181,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def setupGame(self, team1, team2):
         self.questionNumber = 0
         self.roundNumber = str(1)
-        self.gameId = 1
+        self.tournamentId = str(2)
+        from modules import databaseaccess
+        self.gameId = databaseaccess.create_Game(self.tournamentId, self.roundNumber, self.team1id, self.team2id)
         self.tournamentName = "Capstone Tournament of Champions"
         self.setWindowTitle('Quizbowl Scorekeeper')
         self.tournamentLabel.setText(self.tournamentName)

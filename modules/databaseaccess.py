@@ -11,6 +11,22 @@ db.setPassword("password")
 if (db.open()==False):     
   print db.lastError().text()
 
+def create_Game(tournamentId, roundNumber, teamOneId, teamTwoId):
+    query = QSqlQuery()
+    query.prepare("INSERT INTO game (tournamentId, roundNumber, teamOneId, teamOneScore, teamTwoId, teamTwoScore, active) VALUES (:tournamentId, :roundNumber, :teamOneId, 0, :teamTwoId, 0, 1);")
+    query.bindValue(":tournamentId", tournamentId)
+    query.bindValue(":roundNumber", roundNumber)
+    query.bindValue(":teamOneId", teamOneId)
+    query.bindValue(":teamTwoId", teamTwoId)
+    if query.exec_():
+        pass
+    else:
+        print query.lastError().text()
+    query = QSqlQuery ("SELECT LAST_INSERT_ID();")
+    query.next()
+    return query.value(0).toString()
+
+
 def get_Teams ():
     query = QSqlQuery ("SELECT * FROM team LIMIT 5")
     team_id = query.record().indexOf("team_id")
@@ -18,7 +34,6 @@ def get_Teams ():
     teamsDict = {}
     while (query.next()):
         teamsDict[query.value(team_id).toString()] = query.value(name).toString()
-    print teamsDict
     return teamsDict
     
 def get_Player_Name_By_Team_Id(team_id):
@@ -41,7 +56,6 @@ def get_Player_Name_By_Id(id):
     query = QSqlQuery("SELECT name FROM player WHERE playerId = " + str(id))
     query.next()
     name = query.record().indexOf("name")
-    print name
     return name
 
 def get_Team_Pic(team):
@@ -63,11 +77,26 @@ def get_Question_By_Id(question_id):
     qaList = [question, answer]
     return qaList
 
-def submit_Score(self, points):
+
+def submit_Score(gameId, questionNumber, playerId, points, teamNumber):
     query = QSqlQuery()
-    query.prepare("INSERT INTO gamedetails (gameId, tossup, playerId, points) " "VALUES (:gameId, :tossup, :playerId, :points);")
-    query.bindValue(":gameId", self.gameId)
-    query.bindValue(":tossup",  self.questionNumber)
-    query.bindValue(":playerId", self.currentBuzzedPlayerId)
-    query.bindValue(":points",  points)
-    query.exec_()
+    query.prepare("INSERT INTO gamedetails (gameId, tossup, playerId, points) VALUES (:gameId, :tossup, :playerId, :points);")
+    query.bindValue(":gameId", gameId)
+    query.bindValue(":tossup", questionNumber)
+    query.bindValue(":playerId", playerId)
+    query.bindValue(":points", points)
+    if query.exec_():
+        pass
+    else:
+        print query.lastError().text()
+    query = QSqlQuery()
+    if teamNumber == 1:
+        query.prepare("UPDATE game SET teamOneScore = teamOneScore + :points WHERE gameId = :gameId")
+    elif teamNumber == 2:
+        query.prepare("UPDATE game SET teamTwoScore = teamTwoScore + :points WHERE gameId = :gameId")
+    query.bindValue(":points", points)
+    query.bindValue(":gameId",  gameId)
+    if query.exec_():
+        pass
+    else:
+        print query.lastError().text()
