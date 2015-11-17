@@ -1,0 +1,13 @@
+{
+  "name": "Dale",
+  "version": "0.0.1",
+  "description": "Simple sass compilation test",
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-autoprefixer": "latest",
+    "grunt-contrib-watch": "latest",
+    "grunt-sass": "latest",
+    "node-bourbon": "latest",
+    "node-neat": "latest"
+  }
+}
